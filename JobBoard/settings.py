@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
+    'custom_user',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ REST_FRAMEWORK = {
     # YOUR SETTINGS
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
      'DEFAULT_THROTTLE_RATES': {
-         'sign_up_throttle' / '10/hour'
+         'sign_up_throttle':'10/hour'
     }
 }
 
@@ -136,3 +137,9 @@ SPECTACULAR_SETTINGS = {
 }
 
 
+AUTH_USER_MODEL = 'custom_user.CustomUser'
+
+ALLOWED_HOSTS = [
+    '192.168.254.5',
+    'localhost',
+]
