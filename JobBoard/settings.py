@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'custom_user',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    "locations",
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,7 @@ AUTH_USER_MODEL = 'custom_user.CustomUser'
 ALLOWED_HOSTS = [
     '192.168.254.5',
     'localhost',
+    '192.168.254.2'
 ]
 
 
