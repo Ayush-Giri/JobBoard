@@ -200,3 +200,20 @@ SIMPLE_JWT = {
     "REVOKE_TOKEN_CLAIM": "hash_password",
     "CHECK_USER_IS_ACTIVE": True,
 }
+
+
+import os
+
+# Absolute filesystem path to the directory that will hold user-uploaded files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# URL that handles the media served from MEDIA_ROOT
+MEDIA_URL = '/media/'
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+    }
+}
