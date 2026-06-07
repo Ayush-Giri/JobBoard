@@ -32,7 +32,7 @@ class SkillView(APIView):
             instance = serializer.save(user=request.user)
             cache.delete("skills")
             return Response(
-                {"message": "skill created successfully"},
+                serializer.data,
                 status=status.HTTP_201_CREATED
             )
         return Response(

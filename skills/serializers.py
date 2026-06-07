@@ -13,6 +13,12 @@ class SkillSerializer(serializers.ModelSerializer):
             'username'
         ]
 
+        extra_kwargs = {
+            'user': {'read_only': True}
+        }
+
     
     def get_username(self, obj):
         return obj.user.username
+    
+    
