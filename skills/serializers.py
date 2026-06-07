@@ -1,8 +1,18 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from skills.models import Skills
 
 
-class SkillSerializer(ModelSerializer):
+class SkillSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Skills
-        fields = "__all__"
+        fields = [
+            'id',
+            'name',
+            'user',
+            'username'
+        ]
+
+    
+    def get_username(self, obj):
+        return obj.user.username

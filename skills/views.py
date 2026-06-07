@@ -29,7 +29,7 @@ class SkillView(APIView):
     def post(self, request):
         serializer = SkillSerializer(data=request.data)
         if serializer.is_valid():
-            instance = serializer.save()
+            instance = serializer.save(user=request.user)
             cache.delete("skills")
             return Response(
                 {"message": "skill created successfully"},
@@ -42,13 +42,18 @@ class SkillView(APIView):
     
     def patch(self, request, id):
         instance = get_object_or_404(Skills, id=id)
-        serializer = SkillSerializer(instance, data=request.data, partial=True, context={"request": request})
-        if serializer.is_valid():
-            serializer.save()
-            cache.delete(f"skills_{id}")
-            cache.delete("skills") 
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if instance.user.id == request.user.id:
+            serializer = SkillSerializer(instance, data=request.data, partial=True, context={"request": request})
+            if serializer.is_valid():
+                serializer.save()
+                cache.delete(f"skills_{id}")
+                cache.delete("skills") 
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"error": "You cannot edit the skill created by another user"},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
      
     
     def delete(self, request, id):
