@@ -10,6 +10,7 @@ class Role(models.TextChoices):
 class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(choices=Role.choices)
+    is_email_verified = models.BooleanField(default=False)
 
 
     def __str__(self):

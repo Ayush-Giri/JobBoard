@@ -18,6 +18,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             'phone_number',
             'password',
             'role',
+            'is_email_verified',
         ]
 
     
