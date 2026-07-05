@@ -3,12 +3,17 @@ from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from credential_verification.serializers import EmailVerificationLinkSerializer
 from credential_verification.models import EmailVerificationLink
+from rest_framework.permissions import AllowAny
 
 # Create your views here.
 
 class SendVerificationLinkView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = EmailVerificationLinkSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 
 class VerifyEmail(RetrieveAPIView):
@@ -18,6 +23,8 @@ class VerifyEmail(RetrieveAPIView):
     serializer_class = EmailVerificationLinkSerializer
     lookup_field = "unique_link"
     lookup_url_kwarg = "unique_path"
+    permission_classes = [AllowAny]
+    authentication_classes = []
 
     def get_object(self):
         object_instance = super().get_object()
