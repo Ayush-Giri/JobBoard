@@ -10,9 +10,10 @@ User = get_user_model()
 @receiver(post_save, sender=User)
 def manage_user_profile(sender, instance, created, **kwargs):
     if created:
-        ApplicantProfile.objects.create(
-            user=instance 
-        )
+        if instance.role == "applicant":
+            ApplicantProfile.objects.create(
+                user=instance 
+            )
 
 
 
