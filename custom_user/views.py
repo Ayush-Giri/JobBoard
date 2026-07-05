@@ -9,6 +9,8 @@ from throttle import UserSignupTrottle
 class CreateUserView(CreateAPIView):
     serializer_class = CustomUserSerializer
     throttle_classes = [UserSignupTrottle]
+    permission_classes = []
+    authentication_classes = []
     
 
 
