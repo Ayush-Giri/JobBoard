@@ -57,7 +57,7 @@ class EmployerProfile(models.Model):
     company_field = models.CharField(max_length=255, null=True, blank=True)
     company_logo = models.ImageField(upload_to="company_logo", null=True, blank=True)
     company_description = models.TextField(null=True, blank=True)
-    industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
+    industry = models.ForeignKey(Industry, on_delete=models.CASCADE, null=True, blank=True)
     company_size = models.CharField(max_length=10, choices=CompanySize.choices, null=True, blank=True)
     website_url = models.URLField(null=True, blank=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
