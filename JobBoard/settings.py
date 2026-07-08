@@ -50,6 +50,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     "locations",
     "skills",
+    'credential_verification',
+    'profile_management',
+    'industry',
+    
 ]
 
 MIDDLEWARE = [
@@ -153,12 +157,6 @@ SPECTACULAR_SETTINGS = {
 
 
 AUTH_USER_MODEL = 'custom_user.CustomUser'
-
-ALLOWED_HOSTS = [
-    '192.168.254.5',
-    'localhost',
-    '192.168.254.2'
-]
 
 
 
