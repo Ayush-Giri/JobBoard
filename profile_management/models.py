@@ -50,6 +50,9 @@ class EmployerProfile(models.Model):
     website_url = models.URLField(null=True, blank=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
     coutry = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
+    contact_person_name = models.CharField(max_length=50, null=True, blank=True)
+    contact_person_email = models.EmailField(null=True, blank=True)
+    contact_person_number = models.CharField(null=True, blank=True)
     linked_in_company_url = models.URLField(null=True, blank=True)
 
     def __str__(self):

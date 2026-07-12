@@ -52,5 +52,8 @@ class EmployerProfileSerializer(serializers.ModelSerializer):
             'city_detail',
             'country',
             'country_detail',
+            'contact_person_name',
+            'contact_person_email',
+            'contact_person_number',
             'linked_in_company_url',
         ]
