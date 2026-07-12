@@ -41,6 +41,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='auth_logout'),
     path('api/verify/', include('credential_verification.urls')),
     path('api/', include('industry.urls')),
+    path('api/', include('profile_management.urls')),
     
 ]
 
