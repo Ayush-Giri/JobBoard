@@ -11,7 +11,7 @@ User = get_user_model()
 
 
 class ApplicantProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     profile_photo = models.ImageField(upload_to="applicant_profile_image/", null=True, blank=True)
     headline = models.TextField(null=True, blank=True)
@@ -33,18 +33,6 @@ class ApplicantProfile(models.Model):
         return f"{self.user.username} | {self.user.email}"
     
 
-
-# user OneToOneField → User
-# company_name CharField
-# company_logo ImageField, nullable (max 2MB)
-# company_description TextField
-# industry CharField
-# company_size TextChoices: 1-10 / 11-50 / 51-200 / 200+
-# founded_year PositiveIntegerField, nullable
-# website_url URLField, nullable
-# contact_person_name / contact_email / phone_number CharField / EmailField / CharField
-# city / country / address CharField; address nullable
-# linkedin_company_url URLField, nullable
 
 
 class CompanySize(models.TextChoices):
