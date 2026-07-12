@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from profile_management.models import ApplicantProfile
+from profile_management.models import ApplicantProfile, EmployerProfile
 from locations.serializers import CountrySerializer, CitySerializer
 
 
@@ -31,4 +31,26 @@ class ApplicationProfileSerializer(serializers.ModelSerializer):
             'github_url',
             'portfolio_url',
             'resume'
+        ]
+
+
+class EmployerProfileSerializer(serializers.ModelSerializer):
+    city_detail = CitySerializer(source="city", read_only=True)
+    country_detail = CountrySerializer(source="country", read_only=True)
+    class Meta:
+        model = EmployerProfile
+        fields = [
+            'id',
+            'user',
+            'company_field',
+            'company_logo',
+            'company description',
+            'industry',
+            'company_size',
+            'website_url',
+            'city',
+            'city_detail',
+            'country',
+            'country_detail',
+            'linked_in_company_url',
         ]
