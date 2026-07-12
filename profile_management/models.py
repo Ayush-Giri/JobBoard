@@ -41,7 +41,7 @@ class CompanySize(models.TextChoices):
     fiftyone_to_twohundred = ("51-200", "51-200")
 
 class EmployerProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     company_field = models.CharField(max_length=255, null=True, blank=True)
     company_logo = models.ImageField(upload_to="company_logo", null=True, blank=True)
     company_description = models.TextField(null=True, blank=True)
